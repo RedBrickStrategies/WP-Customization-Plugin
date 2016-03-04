@@ -1,0 +1,13 @@
+.column, .columns {
+    margin-left:0%;
+    margin-right:0%;
+}
+
+.one-second.column {
+	width: 50%;
+}
+
+.alignleft, .alignright {
+	margin-bottom: 0px;
+	margin-top: 0px;
+}

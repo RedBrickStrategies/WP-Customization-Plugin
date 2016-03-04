@@ -1,16 +1,16 @@
 <?php
 
 /*
-	Plugin Name: WP Customization Plugin
-	Plugin URI:  http://redbrickstrategies.com/
-	Description: Adds custom JS and CSS files to site, without having to edit theme.
-	Version:     1.0.1
-	Author:      Bradford Knowlton
-	Author URI:  http://bradknowlton.com
-	GitHub Plugin URI: https://github.com/RedBrickStrategies/WP-Customization-Plugin
+    Plugin Name: WP Customization Plugin
+    Plugin URI:  http://redbrickstrategies.com/
+    Description: Adds custom JS and CSS files to site, without having to edit theme.
+    Version:     1.0.2
+    Author:      Bradford Knowlton
+    Author URI:  http://bradknowlton.com
+    GitHub Plugin URI: https://github.com/RedBrickStrategies/WP-Customization-Plugin
 */
 
-define( 'WCP_PLUGIN_VERSION', '1.0.1');
+define( 'WCP_PLUGIN_VERSION', '1.0.2');
 
 /**
  * Enqueue scripts
@@ -34,4 +34,15 @@ function wcp_frontend_enqueue_scripts() {
     */
 }
 
-add_action( 'wp_enqueue_scripts', 'wcp_frontend_enqueue_scripts' );	
+add_action( 'wp_enqueue_scripts', 'wcp_frontend_enqueue_scripts', 999 );    
+
+add_filter( 'body_class','my_body_classes' );
+function my_body_classes( $classes ) {
+    global $page;
+    $body_class =  get_post_meta(get_the_ID(), 'body-class', true);
+    
+        $classes[] = $body_class;
+     
+    return $classes;
+     
+}
